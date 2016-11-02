@@ -15,7 +15,7 @@ module.exports = function (router) {
         request.get({url: url}, function (err, res, body) {
             try {
                 var json = JSON.parse(body);
-                rtm.sendMessage('현재 한강물의 온도는 ' + json.temp + '℃ 입니다', message.channel);
+                rtm.sendMessage('현재 한강물의 온도는 `' + json.temp + '`℃ 입니다', message.channel);
             }
             catch (e) {
                 rtm.sendMessage('한강온도 API를 불러올 수 없습니다.', message.channel);
