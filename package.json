@@ -1,0 +1,12 @@
+{
+  "name": "kdevtalk-bot",
+  "version": "0.0.0",
+  "private": true,
+  "author": "kdevtalk",
+  "description": "kdevtalk-bot",
+  "dependencies": {
+    "@slack/client": "^3.6.0",
+    "cheerio": "^0.22.0",
+    "request": "^2.76.0"
+  }
+}
