@@ -1,12 +1,10 @@
 const RtmClient = require('@slack/client').RtmClient;
-const WebClient = require('@slack/client').WebClient;
-const token = 'xoxb-99411929717-4h4p7SYFj66w35MqaPUOk50t';
+const token = process.env.BOT_TOKEN || '';
 
 const router = require('./router');
 require('./routes/soragodong')(router);
 require('./routes/han-river')(router);
 
-const web = new WebClient(token);
 const rtm = new RtmClient(token, {logLevel: 'error'});
 rtm.start();
 
