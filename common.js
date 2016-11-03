@@ -16,3 +16,21 @@ module.exports.getUsernameToID = function (userID, callback) {
         }
     });
 }
+
+module.exports.stringContains = function (detects, target) {
+    for (var i = 0; i < detects.length; i++) {
+        if (target.includes(detects[i])) {
+            return true;
+        }
+    }
+    return false;
+}
+
+module.exports.stringCompareList = function (detects, target) {
+    for (var i = 0; i < detects.length; i++) {
+        if (target === detects) {
+            return true;
+        }
+    }
+    return false;
+}
