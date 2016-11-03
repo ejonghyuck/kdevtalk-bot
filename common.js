@@ -34,3 +34,11 @@ module.exports.stringCompareList = function (detects, target) {
     }
     return false;
 }
+
+module.exports.getCommandParam = function (command, target) {
+    var strArray = target.split(' ');
+    if (strArray[0] !== command) {
+        return null;
+    }
+    return target.replace(strArray[0] + ' ', '');
+}

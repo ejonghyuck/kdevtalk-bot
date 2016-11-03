@@ -1,9 +1,5 @@
 {
-    "slack-api-token": "",
-    "route-list": [
-        "./routes/soragodong",
-        "./routes/han-river",
-        "./routes/love-battery",
-        "./routes/welcome"
-    ]
+    "slack-api-token": "xoxb-99411929717-bZ5QzY7R2oIdFjFcjpxXQTIE",
+    "firebase-database-url": "https://kdevtalk.firebaseio.com/",
+    "firebase-secret": "./firebase-secret"
 }

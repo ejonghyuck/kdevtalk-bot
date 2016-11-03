@@ -6,7 +6,7 @@
   "description": "kdevtalk-bot",
   "dependencies": {
     "@slack/client": "^3.6.0",
-    "cheerio": "^0.22.0",
+    "firebase": "^3.5.3",
     "request": "^2.76.0"
   }
 }
