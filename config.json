@@ -1,0 +1,8 @@
+{
+    "slack-api-token": "xoxb-99411929717-XvAyPSOFYAkONOLW6xL9FILC",
+    "route-list": [
+        "./routes/soragodong",
+        "./routes/han-river",
+        "./routes/welcome"
+    ]
+}
