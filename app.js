@@ -1,11 +1,13 @@
 const util = require('util');
 const RtmClient = require('@slack/client').RtmClient;
-const token = process.env.BOT_TOKEN;
+
+const config = require('./config.json');
+const token = config['slack-api-token'];
 
 const router = require('./router');
-require('./routes/soragodong')(router);
-require('./routes/han-river')(router);
-require('./routes/welcome')(router);
+for (var i = 0; i < config['route-list'].length; i++) {
+    require(config['route-list'][i])(router);
+}
 
 const rtm = new RtmClient(token, {logLevel: 'error'});
 rtm.start();
