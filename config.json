@@ -1,5 +1,5 @@
 {
-    "slack-api-token": "xoxb-99411929717-bZ5QzY7R2oIdFjFcjpxXQTIE",
+    "slack-api-token": "",
     "firebase-database-url": "https://kdevtalk.firebaseio.com/",
     "firebase-secret": "./firebase-secret"
 }
