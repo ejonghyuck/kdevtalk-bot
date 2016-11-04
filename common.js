@@ -2,7 +2,7 @@ const request = require('request');
 
 const config = require('./config.json');
 
-module.exports.getUsernameToID = function (userID, callback) {
+module.exports.getUsernameFromID = function (userID, callback) {
     var url = 'https://slack.com/api/users.info?token=' + config['slack-api-token'] + '&user=' + userID;
     request.get({url: url}, function (err, res, body) {
         try {
