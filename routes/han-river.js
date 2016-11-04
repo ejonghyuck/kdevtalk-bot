@@ -1,5 +1,5 @@
-const stringSimilarity = require('string-similarity');
 const request = require('request');
+const common = require('../common');
 
 const url = 'http://hangang.dkserver.wo.tc';
 
@@ -9,8 +9,7 @@ module.exports = function (router) {
         var text = message.text;
 
         var detecting = ['자살각', '지금한강은', '한강온도'];
-        var matches = stringSimilarity.findBestMatch(text, detecting).bestMatch;
-        if (matches.rating < 0.5) return;
+        if (!common.stringContains(detecting, text)) return;
 
         request.get({url: url}, function (err, res, body) {
             try {

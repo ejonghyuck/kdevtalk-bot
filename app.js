@@ -1,13 +1,18 @@
 const util = require('util');
 const RtmClient = require('@slack/client').RtmClient;
+const fs = require('fs');
+const path = require('path');
 
 const config = require('./config.json');
 const token = config['slack-api-token'];
 
 const router = require('./router');
-for (var i = 0; i < config['route-list'].length; i++) {
-    require(config['route-list'][i])(router);
-}
+fs.readdir('./routes/', function (err, files) {
+    for (var i = 0; i < files.length; i++) {
+        var f = '.' + path.join('/routes/', files[i]);
+        require(f)(router);
+    }
+});
 
 const rtm = new RtmClient(token, {logLevel: 'error'});
 rtm.start();
