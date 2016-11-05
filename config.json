@@ -1,5 +1,6 @@
 {
     "slack-api-token": "",
+    "weather-api-key": "38357e8c-3c5f-3031-8ca9-28045c4dd0d0",
     "firebase-database-url": "https://kdevtalk.firebaseio.com/",
     "firebase-secret": "./firebase-secret"
 }
