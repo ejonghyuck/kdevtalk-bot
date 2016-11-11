@@ -1,16 +1,15 @@
 const util = require('util');
 const request = require('request');
 const q = require('q');
-const common = require('../common');
 const config = require('../config.json');
 
-const getWeather = function (rtm, channel, location) {
+const getWeather = function (msg, location) {
     getGeocode(location)
         .then((geocode) => {
-            getWeatherInfo(rtm, channel, location, geocode);
+            getWeatherInfo(msg, location, geocode);
         })
         .catch(() => {
-            rtm.sendMessage('지역 불러오기에 실패했습니다.', channel);
+            msg.send('지역 불러오기에 실패했습니다.');
         });
 }
 
@@ -33,7 +32,7 @@ const getGeocode = function (location) {
     return deferred.promise;
 }
 
-const getWeatherInfo = function (rtm, channel, location, geocode) {
+const getWeatherInfo = function (msg, location, geocode) {
     var deferred = q.defer();
     var lat = geocode['lat'], lng = geocode['lng'];
     var url = 'http://apis.skplanetx.com/weather/current/minutely?version=1';
@@ -51,18 +50,13 @@ const getWeatherInfo = function (rtm, channel, location, geocode) {
         message += '상태 : `' + skyStatus + '`\n';
         message += '기온 : `' + tempCurrent + '`℃\n'
         message += '강수량 : `' + precipitation + '`mm';
-        rtm.sendMessage(message, channel);
+
+        msg.send(message);
     });
 }
 
 module.exports = function (router) {
-    router.hear(function (rtm, message) {
-        var channel = message.channel;
-        var text = message.text;
-
-        var command = common.getCommandParam('날씨!', text);
-        if (!util.isNullOrUndefined(command)) {
-            getWeather(rtm, channel, command);
-        }
+    router.hear(/날씨! (.*)$/i, (msg) => {
+        getWeather(msg, msg.match[1]);
     });
 }

@@ -1,8 +1,11 @@
 const hearList = new Array();
 const enterList = new Array();
 
-module.exports.hear = function (callback) {
-    hearList.push(callback);
+module.exports.hear = function (reg, callback) {
+    hearList.push({
+        reg: reg,
+        callback: callback
+    });
 };
 
 module.exports.enter = function (callback) {
@@ -10,8 +13,18 @@ module.exports.enter = function (callback) {
 }
 
 module.exports.onMessage = function (rtm, message) {
+    var text = message.text;
     for (var i = 0; i < hearList.length; i++) {
-        hearList[i](rtm, message);
+        if (hearList[i].reg.test(text)) {
+            var match = text.match(hearList[i].reg);
+            var result = {
+                match: match,
+                send: (msg) => {
+                    rtm.sendMessage(msg, message.channel);
+                }
+            };
+            hearList[i].callback(result);
+        }
     }
 }
 
