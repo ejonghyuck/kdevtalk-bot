@@ -1,3 +1,5 @@
+'use strict';
+
 const util = require('util');
 const RtmClient = require('@slack/client').RtmClient;
 const fs = require('fs');
@@ -7,7 +9,7 @@ const config = require('./config.json');
 const token = config['slack-api-token'];
 
 const router = require('./router');
-fs.readdir('./routes/', function (err, files) {
+fs.readdir('./routes/', (err, files) => {
     for (var i = 0; i < files.length; i++) {
         var f = '.' + path.join('/routes/', files[i]).replace('\\', '/'); // to support window os
         require(f)(router);
@@ -19,7 +21,7 @@ rtm.start();
 
 const RTM_EVENTS = require('@slack/client').RTM_EVENTS;
 
-rtm.on(RTM_EVENTS.MESSAGE, function (message) {
+rtm.on(RTM_EVENTS.MESSAGE, (message) => {
     if (message.subtype === "channel_join") {
         router.onChannelJoin(rtm, message);
     }

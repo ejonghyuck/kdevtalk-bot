@@ -1,35 +1,37 @@
+'use strict';
+
 const hearList = new Array();
 const enterList = new Array();
 
-module.exports.hear = function (reg, callback) {
+module.exports.hear = (reg, callback) => {
     hearList.push({
         reg: reg,
         callback: callback
     });
 };
 
-module.exports.enter = function (callback) {
+module.exports.enter = (callback) => {
     enterList.push(callback);
 }
 
-module.exports.onMessage = function (rtm, message) {
-    var text = message.text;
-    for (var i = 0; i < hearList.length; i++) {
-        if (hearList[i].reg.test(text)) {
-            var match = text.match(hearList[i].reg);
-            var result = {
+module.exports.onMessage = (rtm, message) => {
+    let text = message.text;
+    for (let hear of hearList) {
+        if (hear.reg.test(text)) {
+            let match = text.match(hear.reg);
+            let result = {
                 match: match,
                 send: (msg) => {
                     rtm.sendMessage(msg, message.channel);
                 }
             };
-            hearList[i].callback(result);
+            hear.callback(result);
         }
     }
 }
 
-module.exports.onChannelJoin = function (rtm, message) {
-    for (var i = 0; i < enterList.length; i++) {
-        enterList[i](rtm, message);
+module.exports.onChannelJoin = (rtm, message) => {
+    for (let enter of enterList) {
+        enter(rtm, message);
     }
 }

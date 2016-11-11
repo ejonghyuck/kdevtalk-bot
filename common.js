@@ -2,9 +2,9 @@ const request = require('request');
 
 const config = require('./config.json');
 
-module.exports.getUsernameFromID = function (userID, callback) {
+module.exports.getUsernameFromID = (userID, callback) => {
     var url = 'https://slack.com/api/users.info?token=' + config['slack-api-token'] + '&user=' + userID;
-    request.get({url: url}, function (err, res, body) {
+    request.get({url: url}, (err, res, body) => {
         try {
             var json = JSON.parse(body);
             var username = json.user.name;
@@ -17,7 +17,7 @@ module.exports.getUsernameFromID = function (userID, callback) {
     });
 }
 
-module.exports.stringContains = function (detects, target) {
+module.exports.stringContains = (detects, target) => {
     for (var i = 0; i < detects.length; i++) {
         if (target.includes(detects[i])) {
             return true;
@@ -26,7 +26,7 @@ module.exports.stringContains = function (detects, target) {
     return false;
 }
 
-module.exports.stringCompareList = function (detects, target) {
+module.exports.stringCompareList = (detects, target) => {
     for (var i = 0; i < detects.length; i++) {
         if (target === detects) {
             return true;
@@ -35,7 +35,7 @@ module.exports.stringCompareList = function (detects, target) {
     return false;
 }
 
-module.exports.getCommandParam = function (command, target) {
+module.exports.getCommandParam = (command, target) => {
     var strArray = target.split(' ');
     if (strArray[0] !== command) {
         return null;

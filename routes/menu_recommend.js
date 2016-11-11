@@ -1,14 +1,16 @@
+'use strict';
+
 const util = require('util');
 const firebase = require('../firebase');
 
-const getMenu = function (msg) {
-    var ref = firebase('menu_recommend');
+const getMenu = (msg) => {
+    let ref = firebase('menu_recommend');
     ref.once('value', (snapshot) => {
-        var data = snapshot.val();
+        let data = snapshot.val();
         if (!util.isNullOrUndefined(data)) {
-            var keys = Object.keys(data);
-            var index = Math.floor(Math.random() * keys.length);
-            for (var key in data) {
+            let keys = Object.keys(data);
+            let index = Math.floor(Math.random() * keys.length);
+            for (let key in data) {
                 if (key === keys[index]) {
                     msg.send(data[key]);
                     return;
@@ -24,15 +26,18 @@ const getMenu = function (msg) {
     });
 }
 
-const addMenu = function (msg, menu) {
-    var ref = firebase('menu_recommend');
+const addMenu = (msg, menu) => {
+    let ref = firebase('menu_recommend');
     ref.push(menu, () => {
         msg.send('추가 완료!');
     });
 }
 
-module.exports = function (router) {
+module.exports = (router) => {
     /*
+     * Firebase 설정 전까지 임시 주석처리.
+     *
+
     router.hear(/메뉴추천!$/i, (msg) => {
         getMenu(msg);
     });
