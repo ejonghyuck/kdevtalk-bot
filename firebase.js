@@ -8,6 +8,6 @@ firebase.initializeApp({
 
 const db = firebase.database();
 
-module.exports = function (target) {
+module.exports = (target) => {
     return db.ref(target);
 }
