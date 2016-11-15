@@ -22,6 +22,10 @@ $ npm install # node 의존성 모듈들을 설치합니다.
 $ node app.js # 봇 앱을 실행합니다.
 ```
 
+## Slack-bot api token 및 firebase auth 관련
+
+local에서 봇을 실행하기 위해서는 bot의 slack-api-token가 필수적으로 필요하며, 메뉴추천 관련 기능을 사용하기 위해선 firebase auth가 필요합니다.
+해당 token 및 auth를 필요로 할 경우, test 채널에서 `@makart` 혹은 `@magicpotato` 에게 알람을 주시면 도와드리겠습니다.
 
 
 Reference site
