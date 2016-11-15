@@ -34,15 +34,10 @@ const addMenu = (msg, menu) => {
 }
 
 module.exports = (router) => {
-    /*
-     * Firebase 설정 전까지 임시 주석처리.
-     *
-
     router.hear(/메뉴추천!$/i, (msg) => {
         getMenu(msg);
     });
     router.hear(/메뉴추가! (.*)$/i, (msg) => {
         addMenu(msg, msg.match[1]);
     });
-    */
 }
