@@ -11,7 +11,7 @@ const token = config['slack-api-token'];
 const router = require('./router');
 fs.readdir('./routes/', (err, files) => {
     for (var i = 0; i < files.length; i++) {
-        var f = '.' + path.join('/routes/', files[i]).replace('\\', '/'); // to support window os
+        var f = '.' + path.join('/routes/', files[i]).replace(/\\/g, '/'); // to support window os
         require(f)(router);
     }
 });
